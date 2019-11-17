@@ -1,0 +1,13 @@
+
+# Build Directories
+build/
+.gradle/
+.idea/
+
+# Compiled binaries
+*.class
+*.jar
+*.exe
+
+# Virtual machine crash logs
+hs_err_pid*
