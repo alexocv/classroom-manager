@@ -11,21 +11,29 @@ import org.classroom.domain.PersonalInformation;
 import org.classroom.domain.Student;
 import org.classroom.domain.shapes.SquareShape;
 import org.classroom.geolocation.Location;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ClassRoomFinderTest {
 
-    @Test
-    public void findeAllStudents() {
-        ClassRoomFinder finder = new ClassRoomFinder();
+    List<Classroom> rooms ;
+    ClassRoomFinder finder;
 
-        List<Classroom> rooms = new LinkedList<Classroom>();
-        addClassRoom("Principles of computational geo-location analysis", 34.069140, -118.442689, rooms );
+    @Before
+    public void setUp()
+    {
+        rooms = new LinkedList<Classroom>();
+        finder = new ClassRoomFinder();
+        addClassRoom("Principles of computational geo-location analysis",
+                34.069140, -118.442689, rooms );
         addClassRoom("Sedimentary Petrology", 34.069585, -118.441878 , rooms);
         addClassRoom("Introductory Psychobiology", 34.069742, -118.441312, rooms );
         addClassRoom("Art of Listening', 'latitude", 34.070223, -118.440193, rooms );
         addClassRoom("Art Hitory", 34.071528, -118.441211 , rooms);
+    }
 
+    @Test
+    public void findeAllStudents() {
         List<Student> students = new LinkedList<Student>();
         addStudens( "John Wilson", 34.069149, -118.442639 , students);
         addStudens ( "Jane Graham", 34.069601, -118.441862, students );
@@ -39,6 +47,25 @@ public class ClassRoomFinderTest {
         List<Student> studentsInClasses = finder.studentsInClasses(students, rooms);
 
         assertEquals(3, studentsInClasses.size());
+
+        for (Student student : studentsInClasses) {
+            assertTrue(expectedNames.contains(student.getPersonalInfo().getName()));
+        }
+    }
+
+    @Test
+    public void findeOneStudents() {
+        List<Student> students = new LinkedList<Student>();
+        addStudens( "John Wilson", 34.069849, -118.443539 , students);
+        addStudens ( "Jane Graham", 34.069901, -118.441562, students );
+        addStudens( "Pam Bam", 34.071523, -118.441171 , students );
+
+        ArrayList<String> expectedNames = new ArrayList<String>(1);
+        expectedNames.add("Pam Bam");
+
+        List<Student> studentsInClasses = finder.studentsInClasses(students, rooms);
+
+        assertEquals(1, studentsInClasses.size());
 
         for (Student student : studentsInClasses) {
             assertTrue(expectedNames.contains(student.getPersonalInfo().getName()));

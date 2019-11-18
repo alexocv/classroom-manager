@@ -10,7 +10,7 @@ package org.classroom.geolocation;
 public class Haversine
 {
 
-    public static Distance EARTH_RADIUS = new Distance(6371.01, Distance.Unit.Kilometers);
+    public static Distance EARTH_RADIUS = new Distance(6371, Distance.Unit.Kilometers);
 
     /**
      * Calcualtes the distance between to Locations by using the
@@ -30,12 +30,11 @@ public class Haversine
                 + Math.cos(Math.toRadians(pointA.getLatitude())) * Math.cos(Math.toRadians(pointB.getLatitude()))
                 * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = EARTH_RADIUS.getValue() * c * 1000; // convert to meters
-
+        double distance = EARTH_RADIUS.getValue() * c * 1000;
 
         distance = Math.pow(distance, 2);
 
-        return new Distance(Math.sqrt(distance), Distance.Unit.Kilometers);
+        return new Distance(Math.sqrt(distance), Distance.Unit.Meters);
     }
 }
 
