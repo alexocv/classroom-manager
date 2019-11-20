@@ -35,9 +35,9 @@ public class ClassRoomFinderTest {
     @Test
     public void findeAllStudents() {
         List<Student> students = new LinkedList<Student>();
-        addStudens( "John Wilson", 34.069149, -118.442639 , students);
-        addStudens ( "Jane Graham", 34.069601, -118.441862, students );
-        addStudens( "Pam Bam", 34.071513, -118.441181 , students );
+        addStudents( "John Wilson", 34.069149, -118.442639 , students);
+        addStudents ( "Jane Graham", 34.069601, -118.441862, students );
+        addStudents( "Pam Bam", 34.071513, -118.441181 , students );
 
         ArrayList<String> expectedNames = new ArrayList<String>(3);
         expectedNames.add("John Wilson");
@@ -53,12 +53,13 @@ public class ClassRoomFinderTest {
         }
     }
 
+
     @Test
     public void findeOneStudents() {
         List<Student> students = new LinkedList<Student>();
-        addStudens( "John Wilson", 34.069849, -118.443539 , students);
-        addStudens ( "Jane Graham", 34.069901, -118.441562, students );
-        addStudens( "Pam Bam", 34.071523, -118.441171 , students );
+        addStudents( "John Wilson", 34.069849, -118.443539 , students);
+        addStudents ( "Jane Graham", 34.069901, -118.441562, students );
+        addStudents( "Pam Bam", 34.071523, -118.441171 , students );
 
         ArrayList<String> expectedNames = new ArrayList<String>(1);
         expectedNames.add("Pam Bam");
@@ -72,6 +73,25 @@ public class ClassRoomFinderTest {
         }
     }
 
+
+
+    @Test
+    public void findeMaxDistance() {
+        List<Student> students = new LinkedList<Student>();
+        addStudents( "John Wilson", 34.069149, -118.442639 , students);
+        addStudents ( "Jane Graham", 34.069601, -118.441862, students );
+        addStudents( "Pam Bam", 34.071513, -118.441181 , students );
+
+        ArrayList<String> expectedNames = new ArrayList<String>(3);
+        expectedNames.add("John Wilson");
+
+
+        List<Student> studentsInClasses = finder.studentsInClasses(students, rooms);
+
+        assertEquals(1, studentsInClasses.size());
+        assertEquals("John Wilson", studentsInClasses.get(0));
+
+    }
     private void addClassRoom
         (String name, double latitude, double longitude, List<Classroom> rooms)
     {
@@ -80,7 +100,7 @@ public class ClassRoomFinderTest {
         rooms.add(room);
     }
 
-    private void addStudens
+    private void addStudents
     (String name, double latitude, double longitude, List<Student> students)
     {
         Location location = new Location(latitude, longitude);

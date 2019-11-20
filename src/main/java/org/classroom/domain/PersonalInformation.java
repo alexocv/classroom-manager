@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * personal info
+ * POJO object containing personal information like name
+ *
  * @author alex
  *
  */

@@ -3,7 +3,8 @@ package org.classroom.domain.shapes;
 import org.classroom.geolocation.Distance;
 
 /**
- * Room shape, it represents the room shape.
+ * Shape, Used to represent the room shape.
+ * a shape does know the max distance from center.
  *
  * @author alexc
  *

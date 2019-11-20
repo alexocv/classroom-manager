@@ -6,7 +6,9 @@ import lombok.Data;
 import org.classroom.geolocation.Location;
 
 /**
- * Student representation
+ * Student POJO
+ * Students does know their location.
+ *
  * @author alex
  *
  */
