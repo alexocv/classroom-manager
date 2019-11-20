@@ -59,7 +59,7 @@ public class ClassRoomFinderTest {
         List<Student> students = new LinkedList<Student>();
         addStudents( "John Wilson", 34.069849, -118.443539 , students);
         addStudents ( "Jane Graham", 34.069901, -118.441562, students );
-        addStudents( "Pam Bam", 34.071523, -118.441171 , students );
+        addStudents( "Pam Bam", 34.071650, -118.441171 , students );
 
         ArrayList<String> expectedNames = new ArrayList<String>(1);
         expectedNames.add("Pam Bam");
@@ -76,10 +76,10 @@ public class ClassRoomFinderTest {
 
 
     @Test
-    public void findeMaxDistance() {
+    public void findMaxDistance() {
         List<Student> students = new LinkedList<Student>();
-        addStudents( "John Wilson", 34.069149, -118.442639 , students);
-        addStudents ( "Jane Graham", 34.069601, -118.441862, students );
+        addStudents( "John Wilson", 34.069849, -118.443539 , students);
+        addStudents ( "Jane Graham", 34.069901, -118.441562, students );
         addStudents( "Pam Bam", 34.071513, -118.441181 , students );
 
         ArrayList<String> expectedNames = new ArrayList<String>(3);
@@ -89,7 +89,7 @@ public class ClassRoomFinderTest {
         List<Student> studentsInClasses = finder.studentsInClasses(students, rooms);
 
         assertEquals(1, studentsInClasses.size());
-        assertEquals("John Wilson", studentsInClasses.get(0));
+        assertEquals("Pam Bam", studentsInClasses.get(0).getPersonalInfo().getName());
 
     }
     private void addClassRoom
